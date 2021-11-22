@@ -1,0 +1,35 @@
+<!-- FORMULARIO -->
+<div>
+	<h4>Registro de productos</h4>
+	<hr>
+	<form ngNativeValidate (submit)="guardarProducto()">
+		<div class="row">
+			<div class="mb-3 col-sm-6">
+ 				<label for="txtNombre" class="form-label form-control-sm mb-0">Nombre</label>
+				<input type="text" class="form-control form-control-sm col-sm-12" id="txtNombre" name="txtNombre" [(ngModel)]="txtNombre" value="" required>
+			</div>
+			<div class="mb-3 col-sm-6">
+				<label for="txtTipo" class="form-label form-control-sm mb-0">Tipo</label>
+				<input type="text" class="form-control form-control-sm col-sm-12" id="txtTipo" name="txtTipo" [(ngModel)]="txtTipo" value="" required>
+			</div>
+		</div>
+		<div class="row">
+			<div class="mb-3 col-sm-6">
+				<label for="txtPresentacion" class="form-label form-control-sm mb-0">Presentacion</label>
+				<input type="text" class="form-control form-control-sm col-sm-12" id="txtPresentacion" name="txtPresentacion" [(ngModel)]="txtPresentacion" value=""  required>
+			</div>
+			<div class="mb-3 col-sm-3">
+				<label for="txtCantidad" class="form-label form-control-sm mb-0">Cantidad</label>
+				<input type="number" class="form-control form-control-sm col-sm-12" id="txtCantidad" name="txtCantidad" [(ngModel)]="txtCantidad" value="" required>
+			</div>
+			<div class="mb-3 col-sm-3">
+				<label for="txtPrecio" class="form-label form-control-sm mb-0">Precio</label>
+				<input type="number" class="form-control form-control-sm col-sm-12" id="txtPrecio" name="txtPrecio" [(ngModel)]="txtPrecio" min="1" value="" required>
+			</div>
+		</div>
+		<div class="d-md-flex gap-2 justify-content-end">
+			<input type="submit" class="btn btn-primary" value="Guardar">
+			<input type="reset" class="btn btn-secondary" routerLink="/productos" value="Cancelar">
+		</div>
+	</form>
+</div>

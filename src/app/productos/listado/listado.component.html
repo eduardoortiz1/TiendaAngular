@@ -1,0 +1,56 @@
+<div>
+	<h4 class="mb-3">Listado de productos</h4>
+	<hr>
+	<div id="toolbar" class="row justify-content-end">
+		<input type="text" class="form-control form-control-sm col-sm-4">
+		<a class="col-sm-1"><button type="button" class="btn btn-primary btn-sm"><i class="bi bi-search"></i></button></a>
+	</div>
+	<table id="tablaproductos" class="table table-sm mt-3">
+		<thead>
+			<tr>
+				<th scope="col">Producto</th>
+				<th scope="col">Tipo</th>
+				<th scope="col">Presentacion</th>
+				<th scope="col">Cantidad</th>
+				<th scope="col">Precio</th>
+				<th scope="col">Acciones</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr *ngFor="let item of productos | slice: (page-1) * pageSize : page * pageSize">
+				<td scope="row">{{item.nombre}}</td>
+				<td>{{item.tipo}}</td>
+				<td>{{item.presentacion}}</td>
+				<td>{{item.cantidad | number}}</td>
+				<td>$ {{item.precio | number}}</td>
+				<td>
+					<button type="button" class="btn btn-success btn-sm" [routerLink]="['/productos/registro', item._id]"><i class="bi bi-pencil-fill"></i></button>
+					<button type="button" class="btn btn-danger btn-sm ml-1" data-bs-toggle="modal" data-bs-target="#modalEliminar" (click)="setProductoEliminar(item._id, item.nombre)"><i class="bi bi-trash"></i></button>
+				</td>
+			</tr>
+		</tbody>
+		<ngb-pagination
+		[(page)]="page"
+		[pageSize]="pageSize"
+		[collectionSize]="productos.length"></ngb-pagination>
+	</table>
+
+	<!-- Modal -->
+	<div class="modal fade" id="modalEliminar" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="staticBackdropLabel">Confirmación</h5>
+	        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+	      </div>
+	      <div class="modal-body">
+	        Desea eliminar este producto? {{nombreProductoEliminar}}
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-secondary" (click)="setProductoEliminar(null, '')" data-bs-dismiss="modal">Cancelar</button>
+	        <button type="button" class="btn btn-danger" (click)="eliminarProducto()">Eliminar</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+</div>
