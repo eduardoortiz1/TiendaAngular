@@ -6,7 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ProductosModule } from './productos/productos.module';
 import { GeneralModule } from './general/general.module';
-
+import { ClientesModule } from './clientes/clientes.module';
 
 
 @NgModule({
@@ -18,6 +18,7 @@ import { GeneralModule } from './general/general.module';
     AppRoutingModule,
     ProductosModule,
     GeneralModule,
+    ClientesModule,
     HttpClientModule
   ],
   providers: [],

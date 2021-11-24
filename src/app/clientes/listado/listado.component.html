@@ -1,0 +1,19 @@
+<table id="tablaclientes" class="table table-sm mt-3">
+	<thead>
+		<tr>
+			<th scope="col">Nombres</th>
+			<th scope="col">Apellidos</th>
+			<th scope="col">Tipo id</th>
+			<th scope="col">Numero id</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr *ngFor="let item of clientes">
+			<td>{{item.nombres}}</td>
+			<td>{{item.apellidos}}</td>
+			<td>{{item.identificacion.tipo}}</td>
+			<td>{{item.identificacion.numero}}</td>
+		</tr>
+	</tbody>
+</table>
+
