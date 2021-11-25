@@ -1,22 +1,8 @@
-<form>
-	<div class="row">
-		<div class="mb-3 col-sm-6">
-			<label class="form-label form-control-sm mb-0" for="txtNombre">Ingrese nombres</label>
-			<input type="text" id="txtNombres" name="txtNombres">
-		</div>
-		<div class="mb-3 col-sm-6">
-			<label class="form-label form-control-sm mb-0" for="txtApellidos">Ingrese apellidos</label>
-			<input type="text" id="txtApellidos" name="txtApellidos">
-		</div>
-	</div>
-	<div class="row">
-		<div class="mb-3 col-sm-6">
-			<label class="form-label form-control-sm mb-0" for="txtTipo">Ingrese tipo de documento</label>
-			<input type="text" id="txtTipo" name="txtTipo">
-		</div>
-		<div class="mb-3 col-sm-6">
-			<label class="form-label form-control-sm mb-0" for="txtNumero">Ingrese número de documento</label>
-			<input type="text" id="txtNumero" name="txtNumero">
-		</div>
-	</div>
+<form ngNativeValidate (submit)="guardarCliente()">
+	<label>Nombres:</label><input type="text" id="txtNombres" name="txtNombres" [(ngModel)]="nombres" required><br>
+	<label>Apellidos:</label><input type="text" id="txtApellidos" name="txtApellidos" [(ngModel)]="apellidos" required><br>
+	<label>Tipo de identificación:</label><input type="text" id="txtTipo" name="txtTipo" [(ngModel)]="tipo" required><br>
+	<label>Numero de identificación:</label><input type="number" id="txtNumero" name="txtNumero" [(ngModel)]="numero" required><br>
+	<input type="submit" name="Guardar" value="Guardar">
+	<input type="reset" name="Cancelar" value="Cancelar" routerLink="/clientes">
 </form>

@@ -2,8 +2,8 @@
 	<h4 class="mb-3">Listado de productos</h4>
 	<hr>
 	<div id="toolbar" class="row justify-content-end">
-		<input type="text" class="form-control form-control-sm col-sm-4">
-		<a class="col-sm-1"><button type="button" class="btn btn-primary btn-sm"><i class="bi bi-search"></i></button></a>
+		<input type="text" class="form-control form-control-sm col-sm-4" [(ngModel)]="nombreProductoBuscar">
+		<a class="col-sm-1"><button type="button" class="btn btn-primary btn-sm" (click)="cargarProductos()"><i class="bi bi-search"></i></button></a>
 	</div>
 	<table id="tablaproductos" class="table table-sm mt-3">
 		<thead>

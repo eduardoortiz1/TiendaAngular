@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductosService } from '../servicio/productos.service'
 import { Producto } from '../modelo/producto'
-import { tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'productos-listado',
@@ -13,9 +13,10 @@ export class ProductosListadoComponent implements OnInit {
 
   idProductoEliminar:string|null = null
   nombreProductoEliminar:string = ""
+  nombreProductoBuscar:string = ""
 
   page:number = 1;
-  pageSize:number = 10;
+  pageSize:number = 3;
   collectionSize:number = 0;
 
   productos:Producto[] = [];
@@ -27,9 +28,13 @@ export class ProductosListadoComponent implements OnInit {
   }
 
   cargarProductos() {
+    console.log(this.nombreProductoBuscar)
     this.productosSvc.getProductos().subscribe(data=>{
-      this.productos = data
-    })
+      const prods:Producto[] = data
+      this.productos = prods.filter(prod=>prod.nombre.includes(this.nombreProductoBuscar))
+    },
+    err=>{console.log(err)}
+    )
     this.collectionSize = this.productos.length
   }
   

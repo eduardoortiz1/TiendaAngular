@@ -14,6 +14,8 @@ const routes: Routes = [
   { path:"productos/registro/:id", component: ProductosRegistroComponent },
   { path:"clientes", component: ClientesListadoComponent },
   { path:"clientes/registro", component: ClientesRegistroComponent },
+  { path:"clientes/registro/:id", component: ClientesRegistroComponent },
+  { path:"**", redirectTo:"/home", pathMatch:'full' },
 ];
 
 @NgModule({
