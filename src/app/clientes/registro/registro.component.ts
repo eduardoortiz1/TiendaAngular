@@ -10,50 +10,50 @@ import { Cliente } from '../modelos/cliente'
 })
 export class ClientesRegistroComponent implements OnInit {
 
-  id:string | null = null
-  nombres:string = ""
+  id:string | null = ""
+  nombres:string =""
   apellidos:string = ""
   tipo:string = ""
   numero:number = 0
-
+  
   constructor(private srv:ClienteService, private aRoute:ActivatedRoute) { 
     this.id = this.aRoute.snapshot.paramMap.get('id')
   }
 
   ngOnInit(): void {
-    this.cargarCliente()
+    this.cargarCliente()  
   }
 
   cargarCliente():void {
-    this.srv.cargarCliente(this.id).subscribe(data=>{
-      this.nombres = data.nombres
-      this.apellidos = data.apellidos
-      this.tipo = data.identificacion.tipo
-      this.numero = data.identificacion.numero
-      console.log("Nombre cargado desde data: "+data.nombres)  
-    })
+    if (this.id != null) {
+      this.srv.cargarCliente(this.id).subscribe(data=>{
+        this.nombres=data.nombres
+        this.apellidos=data.apellidos
+        this.tipo=data.identificacion.tipo
+        this.numero=data.identificacion.numero
+      })
+    }
   }
 
   guardarCliente():void {
     const cliente:Cliente = {
-      _id : this.id,
-      nombres : this.nombres,
-      apellidos : this.apellidos,
-      identificacion : {
-        tipo : this.tipo,
-        numero : this.numero
+      _id: this.id,
+      nombres: this.nombres,
+      apellidos: this.apellidos,
+      identificacion: {
+        tipo: this.tipo,
+        numero: this.numero
       }
     }
-    if (this.id == null) {
-      this.srv.guardarClienteNuevo(cliente).subscribe(data=>{
-        console.log("Cliente guardado")
+    if(this.id != null) {
+      this.srv.actualizarCliente(cliente).subscribe(data=>{
+        console.log("Cliente actualizado")
       })
     }
     else {
-      this.srv.actualizarCliente(cliente).subscribe(data=>{
-        console.log("Cliente actualizado")
-      }) 
+      this.srv.guardarNuevoCliente(cliente).subscribe(data=>{
+        console.log("Cliente nuevo guardado")
+      })
     }
   }
-
 }

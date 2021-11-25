@@ -1,8 +1,8 @@
 <form ngNativeValidate (submit)="guardarCliente()">
-	<label>Nombres:</label><input type="text" id="txtNombres" name="txtNombres" [(ngModel)]="nombres" required><br>
-	<label>Apellidos:</label><input type="text" id="txtApellidos" name="txtApellidos" [(ngModel)]="apellidos" required><br>
-	<label>Tipo de identificación:</label><input type="text" id="txtTipo" name="txtTipo" [(ngModel)]="tipo" required><br>
-	<label>Numero de identificación:</label><input type="number" id="txtNumero" name="txtNumero" [(ngModel)]="numero" required><br>
-	<input type="submit" name="Guardar" value="Guardar">
-	<input type="reset" name="Cancelar" value="Cancelar" routerLink="/clientes">
+	<label>Nombres: </label><input type="text" id="txtNombres" name="txtNombres" [(ngModel)]="nombres" required><br>
+	<label>Apellidos: </label><input type="text" id="txtApellidos" name="txtApellidos" [(ngModel)]="apellidos" required><br>
+	<label>Tipo: </label><input type="text" id="txtTipo" name="txtTipo" [(ngModel)]="tipo" required><br>
+	<label>Numero: </label><input type="number" id="txtNumero" name="txtNumero" [(ngModel)]="numero" required><br>
+	<input type="submit" id="btnGuardar" name="btnGuardar" value="Guardar">
+	<input type="reset" id="btnCancelar" name="btnCancelar" value="Cancelar" routerLink='/clientes'>
 </form>

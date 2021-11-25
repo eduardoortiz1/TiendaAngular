@@ -9,13 +9,16 @@
 		</tr>
 	</thead>
 	<tbody>
-		<tr *ngFor="let item of clientes">
+		<tr *ngFor="let item of clientes" >
 			<td>{{item.nombres}}</td>
 			<td>{{item.apellidos}}</td>
 			<td>{{item.identificacion.tipo}}</td>
 			<td>{{item.identificacion.numero}}</td>
-			<td><a [routerLink]="['/clientes/registro', item._id]">Cargar</a></td>
+			<td>
+				<button [routerLink]="['/clientes/registro', item._id]">Cargar</button>
+				<button (click)="eliminarCliente(item._id)">Eliminar</button>
+			</td>
 		</tr>
 	</tbody>
 </table>
-
+<p>Hay {{clientes.length}} registros</p>
