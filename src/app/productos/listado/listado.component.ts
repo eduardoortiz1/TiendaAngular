@@ -30,8 +30,8 @@ export class ProductosListadoComponent implements OnInit {
   cargarProductos() {
     console.log(this.nombreProductoBuscar)
     this.productosSvc.getProductos().subscribe(data=>{
-      const prods:Producto[] = data
-      this.productos = prods.filter(prod=>prod.nombre.includes(this.nombreProductoBuscar))
+      const prodsTemp:Producto[] = data
+      this.productos = prodsTemp.filter(prod=>prod.nombre.includes(this.nombreProductoBuscar))
     },
     err=>{console.log(err)}
     )

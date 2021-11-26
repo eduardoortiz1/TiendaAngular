@@ -32,7 +32,7 @@ export class ClientesListadoComponent implements OnInit {
       })
     }
     this.cargarClientes()
-    this.router.navigate(["/clientes"])
+    this.ngOnInit()
   }
 
 }

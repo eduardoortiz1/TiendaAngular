@@ -16,7 +16,6 @@
 			<td>{{item.identificacion.numero}}</td>
 			<td>
 				<button [routerLink]="['/clientes/registro', item._id]">Cargar</button>
-				<button (click)="eliminarCliente(item._id)">Eliminar</button>
 			</td>
 		</tr>
 	</tbody>
