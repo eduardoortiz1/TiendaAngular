@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ClienteService } from '../servicios/cliente.service'
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Cliente } from '../modelos/cliente'
 
 @Component({
@@ -16,7 +16,7 @@ export class ClientesRegistroComponent implements OnInit {
   tipo:string = ""
   numero:number = 0
   
-  constructor(private srv:ClienteService, private aRoute:ActivatedRoute) { 
+  constructor(private srv:ClienteService, private aRoute:ActivatedRoute, private router:Router) { 
     this.id = this.aRoute.snapshot.paramMap.get('id')
   }
 
@@ -48,11 +48,13 @@ export class ClientesRegistroComponent implements OnInit {
     if(this.id != null) {
       this.srv.actualizarCliente(cliente).subscribe(data=>{
         console.log("Cliente actualizado")
+        this.router.navigate(['/clientes']);
       })
     }
     else {
       this.srv.guardarNuevoCliente(cliente).subscribe(data=>{
         console.log("Cliente nuevo guardado")
+        this.router.navigate(['/clientes']);
       })
     }
   }

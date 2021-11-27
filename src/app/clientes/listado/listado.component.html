@@ -16,8 +16,11 @@
 			<td>{{item.identificacion.numero}}</td>
 			<td>
 				<button [routerLink]="['/clientes/registro', item._id]">Cargar</button>
+				<button (click)="eliminarCliente(item._id)">Eliminar</button>
 			</td>
 		</tr>
 	</tbody>
 </table>
-<p>Hay {{clientes.length}} registros</p>
+<div *ngIf="clientes.length > 0; else elseBlock">Se encontraron {{clientes.length}} registros.</div>
+<ng-template #elseBlock>No hay registros.</ng-template>
+

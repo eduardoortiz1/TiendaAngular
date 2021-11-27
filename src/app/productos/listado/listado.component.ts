@@ -47,7 +47,7 @@ export class ProductosListadoComponent implements OnInit {
     if (this.idProductoEliminar!=null) {
       this.productosSvc.eliminarProducto(this.idProductoEliminar).subscribe(data=>{
         console.log('El producto fue eliminado con exito!');
-        this.router.navigate(['/productos']);
+        this.cargarProductos()
       }, error => {
         console.log(error);
       })

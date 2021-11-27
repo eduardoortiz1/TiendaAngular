@@ -29,10 +29,10 @@ export class ClientesListadoComponent implements OnInit {
     if (id!=null) {
       this.srv.eliminarCliente(id).subscribe(data=>{
         console.log("Cliente eliminado")
+        this.cargarClientes()
       })
     }
-    this.cargarClientes()
-    this.ngOnInit()
+    
   }
 
 }
