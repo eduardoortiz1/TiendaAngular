@@ -4,10 +4,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
-import { ClientesModule } from './clientes/clientes.module';
 import { ProductosModule } from './productos/productos.module';
 import { GeneralModule } from './general/general.module';
-
+import { ClientesModule } from './clientes/clientes.module';
 
 
 @NgModule({
@@ -17,9 +16,9 @@ import { GeneralModule } from './general/general.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ClientesModule,
     ProductosModule,
     GeneralModule,
+    ClientesModule,
     HttpClientModule
   ],
   providers: [],

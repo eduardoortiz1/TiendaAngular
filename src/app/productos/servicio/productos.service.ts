@@ -7,7 +7,8 @@ import { Producto } from '../modelo/producto'
   providedIn: 'root'
 })
 export class ProductosService {
-  private URL:string = 'http://localhost:3000/api/productos/'
+  //private URL:string = 'http://localhost:3000/api/productos/'
+  private URL:string = 'https://tiendaapi-2021.herokuapp.com/api/productos/'
 
   constructor(private http: HttpClient) { }
 
