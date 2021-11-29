@@ -11,25 +11,57 @@ import { Router } from '@angular/router';
 })
 export class ClientesListadoComponent implements OnInit {
 
+  idClienteEliminar:string|null = null
+  nombreClienteEliminar:string = ""
+  datoBuscar:string = ""
+
+  page:number = 1;
+  pageSize:number = 3;
+  collectionSize:number = 0;
+
   clientes:Cliente[] = []
 
-  constructor(private srv:ClienteService, private router:Router) { }
+  constructor(private clientesSrv:ClienteService, private router:Router) { }
 
   ngOnInit(): void {
     this.cargarClientes()
   }
 
-  cargarClientes():void {
-    this.srv.cargarClientes().subscribe(data=>{
-      this.clientes = data
-    })
+  buscarClientes(clean:boolean):void {
+    if (clean) {
+      this.datoBuscar = ""
+    }
+    this.cargarClientes()
   }
 
-  eliminarCliente(id:string|null):void {
-    if (id!=null) {
-      this.srv.eliminarCliente(id).subscribe(data=>{
+  cambiarMinusculasyTildes(textoCambiar:string):string {
+    return textoCambiar.toLowerCase().replace('á','a').replace('é','e').replace('í','i').replace('ó','o').replace('ú','u');
+  }
+
+  cargarClientes():void {
+    console.log(this.datoBuscar)
+    this.clientesSrv.cargarClientes().subscribe(data=>{
+      const listaTemp:Cliente[] = data
+      const dbusc = this.cambiarMinusculasyTildes(this.datoBuscar)
+      this.clientes = listaTemp.filter(cli=>this.cambiarMinusculasyTildes(cli.nombres+" "+cli.apellidos).includes(dbusc))
+    },
+    err=>{console.log(err)}
+    )
+    this.collectionSize = this.clientes.length
+  }
+
+  setClienteEliminar(id:string|null, nombre:string): void {
+    this.idClienteEliminar = id==''? null : id
+    this.nombreClienteEliminar = nombre
+  }
+
+  eliminarCliente():void {
+    if (this.idClienteEliminar!=null) {
+      this.clientesSrv.eliminarCliente(this.idClienteEliminar).subscribe(data=>{
         console.log("Cliente eliminado")
         this.cargarClientes()
+      }, error => {
+        console.log(error);
       })
     }
     

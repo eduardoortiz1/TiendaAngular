@@ -10,24 +10,27 @@ export class ClienteService {
 
   constructor(private http:HttpClient) { }
 
+  //private URL:string = "http://localhost:3000/api/clientes/"
+  private URL:string = "https://tiendaapi-2021.herokuapp.com/api/clientes/"
+
   cargarClientes():Observable<any> {
-    return this.http.get("http://localhost:3000/api/clientes")
+    return this.http.get(this.URL)
   }
 
   cargarCliente(id:string|null):Observable<any> {
-    return this.http.get("http://localhost:3000/api/clientes/"+id)
+    return this.http.get(this.URL+id)
   }
 
   guardarNuevoCliente(cliente:Cliente):Observable<any> {
-    return this.http.post("http://localhost:3000/api/clientes", cliente)
+    return this.http.post(this.URL, cliente)
   }
 
   actualizarCliente(cliente:Cliente):Observable<any> {
-    return this.http.put("http://localhost:3000/api/clientes/"+cliente._id, cliente)
+    return this.http.put(this.URL+cliente._id, cliente)
   }
 
   eliminarCliente(id:string):Observable<any> {
-    return this.http.delete("http://localhost:3000/api/clientes/"+id)
+    return this.http.delete(this.URL+id)
   }
  
 }

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProductosService } from '../servicio/productos.service'
 import { Producto } from '../modelo/producto'
 import { Router } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+
 
 @Component({
   selector: 'productos-listado',
@@ -13,7 +13,7 @@ export class ProductosListadoComponent implements OnInit {
 
   idProductoEliminar:string|null = null
   nombreProductoEliminar:string = ""
-  nombreProductoBuscar:string = ""
+  datoBuscar:string = ""
 
   page:number = 1;
   pageSize:number = 3;
@@ -27,23 +27,35 @@ export class ProductosListadoComponent implements OnInit {
     this.cargarProductos()
   }
 
-  cargarProductos() {
-    console.log(this.nombreProductoBuscar)
+  buscarProductos(clean:boolean):void {
+    if (clean) {
+      this.datoBuscar = ""
+    }
+    this.cargarProductos()
+  }
+
+  cambiarMinusculasyTildes(textoCambiar:string):string {
+    return textoCambiar.toLowerCase().replace('á','a').replace('é','e').replace('í','i').replace('ó','o').replace('ú','u');
+  }
+
+  cargarProductos():void {
+    console.log(this.datoBuscar)
     this.productosSvc.getProductos().subscribe(data=>{
-      const prodsTemp:Producto[] = data
-      this.productos = prodsTemp.filter(prod=>prod.nombre.includes(this.nombreProductoBuscar))
+      const listaTemp:Producto[] = data
+      const dbusc = this.cambiarMinusculasyTildes(this.datoBuscar)
+      this.productos = listaTemp.filter(prod=>this.cambiarMinusculasyTildes(prod.nombre+" "+prod.tipo+" "+prod.presentacion).includes(dbusc))
     },
     err=>{console.log(err)}
     )
     this.collectionSize = this.productos.length
   }
   
-  setProductoEliminar(id:string|null, nombre:string) {
+  setProductoEliminar(id:string|null, nombre:string): void {
     this.idProductoEliminar = id==''? null : id
     this.nombreProductoEliminar = nombre
   }
 
-  eliminarProducto() {
+  eliminarProducto(): void {
     if (this.idProductoEliminar!=null) {
       this.productosSvc.eliminarProducto(this.idProductoEliminar).subscribe(data=>{
         console.log('El producto fue eliminado con exito!');
